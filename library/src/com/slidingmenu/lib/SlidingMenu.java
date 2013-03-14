@@ -989,4 +989,7 @@ public class SlidingMenu extends RelativeLayout {
 		}
 	}
 
+    public CustomViewAbove getViewAbove() {
+        return mViewAbove;
+    }
 }
