@@ -62,7 +62,11 @@ public class SlidingMenu extends RelativeLayout {
 	
 	private OnCloseListener mCloseListener;
 
-	/**
+    public CustomViewAbove getViewAbove() {
+        return mViewAbove;
+    }
+
+    /**
 	 * The listener interface for receiving onOpen events.
 	 * The class that is interested in processing a onOpen
 	 * event implements this interface, and the object created
