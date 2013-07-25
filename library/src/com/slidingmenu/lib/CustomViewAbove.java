@@ -3,33 +3,17 @@ package com.slidingmenu.lib;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.v4.view.KeyEventCompat;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v4.view.VelocityTrackerCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewConfigurationCompat;
+import android.support.v4.view.*;
 import android.util.AttributeSet;
 import android.util.FloatMath;
 import android.util.Log;
-import android.util.TypedValue;
-import android.view.FocusFinder;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.SoundEffectConstants;
-import android.view.VelocityTracker;
-import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.ViewGroup;
+import android.view.*;
 import android.view.animation.Interpolator;
-import android.widget.FrameLayout;
 import android.widget.Scroller;
-
 import com.slidingmenu.lib.SlidingMenu.OnClosedListener;
 import com.slidingmenu.lib.SlidingMenu.OnOpenedListener;
+import com.slidingmenu.lib.SlidingMenu.OnProgressListener;
 //import com.slidingmenu.lib.SlidingMenu.OnCloseListener;
 //import com.slidingmenu.lib.SlidingMenu.OnOpenListener;
 
@@ -98,6 +82,7 @@ public class CustomViewAbove extends ViewGroup {
 	//	private OnOpenListener mOpenListener;
 	private OnClosedListener mClosedListener;
 	private OnOpenedListener mOpenedListener;
+    private OnProgressListener mOnProgressListener;
 
 	//	private int mScrollState = SCROLL_STATE_IDLE;
 
@@ -266,6 +251,10 @@ public class CustomViewAbove extends ViewGroup {
 	public void setOnOpenedListener(OnOpenedListener l) {
 		mOpenedListener = l;
 	}
+
+    public void setOnProgressListener(OnProgressListener l) {
+        mOnProgressListener = l;
+    }
 
 	public void setOnClosedListener(OnClosedListener l) {
 		mClosedListener = l;
@@ -792,6 +781,9 @@ public class CustomViewAbove extends ViewGroup {
 			mCustomViewBehind.scrollBehindTo(mContent, x, y);
 //		if (mSelectorDrawable != null)
 //			invalidate();
+        if (mOnProgressListener != null) {
+            mOnProgressListener.onProgress(getPercentOpen());
+        }
 	}
 
 	private int determineTargetPage(float pageOffset, int velocity, int deltaX) {

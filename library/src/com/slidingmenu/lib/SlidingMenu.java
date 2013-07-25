@@ -102,6 +102,14 @@ public class SlidingMenu extends RelativeLayout {
 		public void onOpened();
 	}
 
+    public interface OnProgressListener {
+
+        /**
+         * On opened.
+         */
+        public void onProgress(float percentOpen);
+    }
+
 	/**
 	 * The listener interface for receiving onClose events.
 	 * The class that is interested in processing a onClose
@@ -755,9 +763,13 @@ public class SlidingMenu extends RelativeLayout {
 	 *
 	 * @param listener the new OnOpenedListener
 	 */
-	public void setOnOpenedListener(OnOpenedListener listener) {
-		mViewAbove.setOnOpenedListener(listener);
-	}
+    public void setOnOpenedListener(OnOpenedListener listener) {
+        mViewAbove.setOnOpenedListener(listener);
+    }
+
+    public void setOnProgressListener(OnProgressListener listener) {
+        mViewAbove.setOnProgressListener(listener);
+    }
 
 	/**
 	 * Sets the OnClosedListener. {@link OnClosedListener#onClosed() OnClosedListener.onClosed()} will be called after the SlidingMenu is closed
