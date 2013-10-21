@@ -5,16 +5,9 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="5"
-        android:targetSdkVersion="17" />
+        android:minSdkVersion="7"
+        android:targetSdkVersion="18" />
 
-    <application>
-        <uses-library android:name="com.google.android.maps" />
-
-        <activity android:name=".SlidingMenuActivity" />
-        <activity android:name=".SlidingFragmentActivity" />
-        <activity android:name=".SlidingListActivity" />
-        <activity android:name=".SlidingPreferenceActivity" />
-    </application>
+    <application />
 
 </manifest>
